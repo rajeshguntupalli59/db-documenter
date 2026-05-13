@@ -4,3 +4,4 @@ psycopg[binary]
 pyodbc==5.1.0
 python-dotenv==1.0.1
 pydantic==2.8.2
+requests==2.32.3

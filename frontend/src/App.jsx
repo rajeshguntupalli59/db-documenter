@@ -1,14 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Database, Search, ChevronRight, Download, ArrowLeft, Eye } from "lucide-react";
 import ConnectionForm from "./components/ConnectionForm";
 import TableDetail from "./components/TableDetail";
+import Activate from "./components/Activate";
 
 export default function App() {
+  const [licensed, setLicensed] = useState(null); // null=loading, true/false
   const [schema,   setSchema]   = useState(null);
   const [dbType,   setDbType]   = useState("");
   const [selected, setSelected] = useState(null);
   const [search,   setSearch]   = useState("");
   const [view,     setView]     = useState("tables"); // "tables" | "views"
+
+  useEffect(() => {
+    fetch("/api/license")
+      .then(r => r.json())
+      .then(d => setLicensed(d.activated))
+      .catch(() => setLicensed(false));
+  }, []);
+
+  if (licensed === null) return (
+    <div style={{ minHeight:"100vh", display:"flex", alignItems:"center", justifyContent:"center", background:"#030712" }}>
+      <div style={{ width:28, height:28, border:"3px solid #1d4ed8", borderTopColor:"transparent", borderRadius:"50%", animation:"spin 0.8s linear infinite" }} />
+      <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+    </div>
+  );
+
+  if (!licensed) return <Activate onActivated={() => setLicensed(true)} />;
 
   function handleResult(data, type) {
     setSchema(data);

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DB Documenter — Auto-generate Database Documentation</title>
+  <meta name="description" content="Self-hosted database schema documentation for PostgreSQL and SQL Server. Connect and instantly generate clean docs — tables, columns, indexes, foreign keys, and views." />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans antialiased">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-800/60 bg-gray-950/90 backdrop-blur-md">
+    <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+        </div>
+        <span class="text-sm font-bold">DB Documenter</span>
+      </div>
+      <a href="#buy" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-lg transition">
+        Buy — $99
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="pt-32 pb-20 px-6 max-w-5xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 bg-blue-950/50 border border-blue-800/40 rounded-full px-3 py-1.5 mb-6">
+      <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+      <span class="text-xs text-blue-300 font-medium">Self-hosted · PostgreSQL + SQL Server · One-time payment</span>
+    </div>
+    <h1 class="text-5xl font-extrabold leading-tight mb-5">
+      Auto-generate database<br />
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">documentation instantly</span>
+    </h1>
+    <p class="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed mb-10">
+      Connect DB Documenter to any PostgreSQL or SQL Server database and get a clean, searchable schema reference in seconds —
+      tables, columns, data types, indexes, foreign keys, and views. Export to PDF and share with your team.
+    </p>
+    <div class="flex items-center justify-center gap-4">
+      <a href="#buy" class="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl text-base transition shadow-lg shadow-blue-900/40">
+        Buy Now — $99
+      </a>
+      <a href="#features" class="px-8 py-4 bg-gray-900 hover:bg-gray-800 border border-gray-700 text-gray-300 font-semibold rounded-2xl text-base transition">
+        See Features
+      </a>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div id="features" class="py-20 px-6 max-w-5xl mx-auto">
+    <h2 class="text-2xl font-bold text-center mb-12">Everything your team needs to understand your schema</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      {[
+        ["Tables & Columns", "Every table with column names, data types, nullability, defaults, and primary key markers — all in one view."],
+        ["Indexes", "See every index, the columns it covers, and whether it is unique or a primary key."],
+        ["Foreign Keys", "Relationships mapped visually — which column points to which table and column."],
+        ["Views", "Full SQL definition for every view in the database."],
+        ["PDF Export", "Click Export PDF and get a clean printable document to share with developers, auditors, or new team members."],
+        ["Search", "Instantly filter tables and views by name — works across hundreds of tables."],
+      ]}
+    </div>
+  </div>
+
+  <div class="py-20 px-6 max-w-5xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6">
+        <div class="w-9 h-9 rounded-xl bg-blue-900/40 border border-blue-800/40 flex items-center justify-center mb-4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+        </div>
+        <h3 class="font-semibold text-white mb-2">Tables & Columns</h3>
+        <p class="text-sm text-gray-400">Every column with name, type, nullability, default values, and primary key markers.</p>
+      </div>
+      <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6">
+        <div class="w-9 h-9 rounded-xl bg-blue-900/40 border border-blue-800/40 flex items-center justify-center mb-4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+        </div>
+        <h3 class="font-semibold text-white mb-2">Indexes & Foreign Keys</h3>
+        <p class="text-sm text-gray-400">All indexes with column coverage, uniqueness flags, and full FK relationship mapping.</p>
+      </div>
+      <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6">
+        <div class="w-9 h-9 rounded-xl bg-blue-900/40 border border-blue-800/40 flex items-center justify-center mb-4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h3 class="font-semibold text-white mb-2">PDF Export</h3>
+        <p class="text-sm text-gray-400">One click to export clean printable documentation to share with your team or auditors.</p>
+      </div>
+      <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6">
+        <div class="w-9 h-9 rounded-xl bg-blue-900/40 border border-blue-800/40 flex items-center justify-center mb-4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3 class="font-semibold text-white mb-2">Instant Search</h3>
+        <p class="text-sm text-gray-400">Filter tables and views by name instantly — works across databases with hundreds of tables.</p>
+      </div>
+      <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6">
+        <div class="w-9 h-9 rounded-xl bg-blue-900/40 border border-blue-800/40 flex items-center justify-center mb-4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3 class="font-semibold text-white mb-2">Views</h3>
+        <p class="text-sm text-gray-400">Full SQL definition for every view in the database, searchable alongside tables.</p>
+      </div>
+      <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6">
+        <div class="w-9 h-9 rounded-xl bg-blue-900/40 border border-blue-800/40 flex items-center justify-center mb-4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="font-semibold text-white mb-2">Self-Hosted</h3>
+        <p class="text-sm text-gray-400">Runs on your own machine. Your credentials and schema never leave your environment.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Databases -->
+  <div class="py-16 px-6 border-y border-gray-800/40 bg-gray-900/20">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-8">Works with</p>
+      <div class="flex items-center justify-center gap-12">
+        <div class="text-center">
+          <div class="text-2xl font-bold text-white mb-1">PostgreSQL</div>
+          <div class="text-xs text-gray-500">Version 13 and above</div>
+        </div>
+        <div class="w-px h-10 bg-gray-700"></div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-white mb-1">SQL Server</div>
+          <div class="text-xs text-gray-500">2017, 2019, 2022, Express</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing -->
+  <div id="buy" class="py-24 px-6 max-w-lg mx-auto text-center">
+    <h2 class="text-3xl font-extrabold mb-3">One price. Forever yours.</h2>
+    <p class="text-gray-400 mb-10">No subscription. No cloud. Pay once, install anywhere, keep it forever.</p>
+
+    <div class="bg-gray-900/60 border border-gray-700 rounded-2xl p-8 text-left">
+      <div class="flex items-end gap-2 mb-6">
+        <span class="text-5xl font-extrabold text-white">$99</span>
+        <span class="text-gray-500 mb-2">one-time</span>
+      </div>
+      <ul class="space-y-3 mb-8 text-sm text-gray-300">
+        <li class="flex items-center gap-3"><span class="text-blue-400 font-bold">✓</span> PostgreSQL + SQL Server support</li>
+        <li class="flex items-center gap-3"><span class="text-blue-400 font-bold">✓</span> Tables, columns, indexes, FK, views</li>
+        <li class="flex items-center gap-3"><span class="text-blue-400 font-bold">✓</span> PDF export</li>
+        <li class="flex items-center gap-3"><span class="text-blue-400 font-bold">✓</span> Self-hosted — your data stays with you</li>
+        <li class="flex items-center gap-3"><span class="text-blue-400 font-bold">✓</span> License key emailed instantly</li>
+        <li class="flex items-center gap-3"><span class="text-blue-400 font-bold">✓</span> Free updates</li>
+      </ul>
+      <a href="CHECKOUT_LINK_HERE"
+         class="block w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-center text-base transition shadow-lg shadow-blue-900/40">
+        Buy DB Documenter — $99
+      </a>
+      <p class="text-center text-xs text-gray-600 mt-4">Secure checkout via Lemon Squeezy · Instant delivery</p>
+    </div>
+  </div>
+
+  <footer class="border-t border-gray-800/50 px-6 py-8">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+      <span>© 2026 Rajesh Guntupalli</span>
+      <a href="mailto:queryoptimizer78@gmail.com" class="hover:text-gray-400 transition">queryoptimizer78@gmail.com</a>
+    </div>
+  </footer>
+</body>
+</html>
