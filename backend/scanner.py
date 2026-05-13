@@ -137,12 +137,22 @@ def scan_sqlserver(host: str, port: int, dbname: str, user: str, password: str) 
         raise RuntimeError("No SQL Server ODBC driver found. Install 'ODBC Driver 17 for SQL Server'.")
     driver = drivers[-1]
 
+    # Named instance (e.g. localhost\SQLEXPRESS) — don't append port
+    if "\\" in host:
+        server = host
+    else:
+        server = f"{host},{port}"
+
+    if user:
+        auth = f"UID={user};PWD={password};"
+    else:
+        auth = "Trusted_Connection=yes;"
+
     conn_str = (
         f"DRIVER={{{driver}}};"
-        f"SERVER={host},{port};"
+        f"SERVER={server};"
         f"DATABASE={dbname};"
-        f"UID={user};"
-        f"PWD={password};"
+        f"{auth}"
         f"Connection Timeout=10;"
     )
     conn = pyodbc.connect(conn_str)
@@ -175,10 +185,25 @@ def scan_sqlserver(host: str, port: int, dbname: str, user: str, password: str) 
             t.name              AS table_name,
             c.name              AS column_name,
             c.column_id         AS ordinal_position,
-            tp.name             AS data_type,
-            c.max_length        AS character_maximum_length,
-            c.precision         AS numeric_precision,
-            c.scale             AS numeric_scale,
+            -- Build clean type string matching SSMS display
+            CASE
+              WHEN tp.name IN ('varchar','char','binary','varbinary') AND c.max_length = -1
+                THEN tp.name + '(MAX)'
+              WHEN tp.name IN ('varchar','char','binary','varbinary')
+                THEN tp.name + '(' + CAST(c.max_length AS VARCHAR) + ')'
+              WHEN tp.name IN ('nvarchar','nchar') AND c.max_length = -1
+                THEN tp.name + '(MAX)'
+              WHEN tp.name IN ('nvarchar','nchar')
+                THEN tp.name + '(' + CAST(c.max_length/2 AS VARCHAR) + ')'
+              WHEN tp.name IN ('decimal','numeric')
+                THEN tp.name + '(' + CAST(c.precision AS VARCHAR) + ',' + CAST(c.scale AS VARCHAR) + ')'
+              WHEN tp.name IN ('float')
+                THEN tp.name + '(' + CAST(c.precision AS VARCHAR) + ')'
+              ELSE tp.name
+            END                 AS data_type,
+            NULL                AS character_maximum_length,
+            NULL                AS numeric_precision,
+            NULL                AS numeric_scale,
             CASE c.is_nullable WHEN 1 THEN 'YES' ELSE 'NO' END AS is_nullable,
             dc.definition       AS column_default,
             CASE WHEN ic.column_id IS NOT NULL THEN 1 ELSE 0 END AS is_primary_key,
